@@ -1,64 +1,57 @@
-// import RecipeCard from '@/components/RecipeCard'
-// import Recipies from '@/components/Recipies'
-// import { favouritesRecipe } from '@/store/atom/favrourites'
-// import { useRecoilState } from 'recoil'
 
-// type typeRecipe = {
-//   [key:string]:string
-// }
+import FavouriteComponent from '@/components/FavouriteComponent'
+import { favouritesRecipeArray } from '@/store/atom/favrecipeArr'
+import { favouritesRecipe} from '@/store/atom/favrourites'
+import axios from 'axios'
+import { useEffect } from 'react'
+
+
+
+import { useRecoilState} from 'recoil'
+
+
+
+
 
 export default function Fav() {
-  // const [favourites, setFavourites] = useRecoilState(favouritesRecipe)
+  const [favourites] = useRecoilState(favouritesRecipe)
+  const [,setfavArr] = useRecoilState(favouritesRecipeArray)
+ 
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const requests = favourites.map(async (e) => {
+          const fav = await axios.get("https://www.themealdb.com/api/json/v1/1/lookup.php?i=" + e);
+          return fav.data.meals[0];
+        });
+  
+        const newData = await Promise.all(requests);
+        setfavArr(newData);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        // Handle the error appropriately, e.g., show a user-friendly message
+      }
+    };
+  
+    fetchData();
+  
+  }, [favourites]);
+  
+  
  
 
   
 
   return (
-    <div>
-{/* 
-{
-              favourites?.length === 0 ? "" : <Recipies />
-          } */}
+    <div className='min-h-screen  '>
 
-      FAV
+{
+              favourites?.length === 0 ? "" : <FavouriteComponent/>
+          }
+
+     
 
     </div>
   )
 }
 
-
-// function favouriteComponent() {
-
-//   const [favourites, setFavourites] = useRecoilState(favouritesRecipe)
-  
-//   let windowWidth = window.innerWidth
-//   return (
-//     <div className='min-h-screen  '>
-  
-
-{/* 
-      {
-        windowWidth <550 ?  <div className='min-h-screen  grid grid-cols-1 gap-20 place-items-center '>
-        {favourites.map((e) => (
-          <RecipeCard image={e.strMealThumb} key={e.idMeal} title={e.strMeal} recipeKey={e.idMeal} />
-            ))}
-            
-        </div>
-          :
-          <div className='min-h-screen  grid grid-cols-3 gap-20 place-items-center '>
-          {recipes.map((e) => (
-            <RecipeCard image={e.strMealThumb} key={e.idMeal} title={e.strMeal}  recipeKey={e.idMeal} />
-              ))}
-              
-          </div>
-
-      }
-          
-
-       */}
-//       Fav
-      
-//       </div>
-//   )
-  
-// }

@@ -5,12 +5,14 @@ import Home from "./pages/Home"
 import Fav from "./pages/Fav"
 import { RecoilRoot } from "recoil"
 import Footer from "./components/Footer"
+import { Suspense } from "react"
 
 
 function App() {
 ;
   return (
     <RecoilRoot>
+      <Suspense fallback={<div>Loading...</div>}> 
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
       <Router>
         <Header />
@@ -21,7 +23,8 @@ function App() {
           </Routes>
           <Footer/>
       </Router>
-      </ThemeProvider>
+        </ThemeProvider>
+        </Suspense>
       </RecoilRoot>
   )
 }
