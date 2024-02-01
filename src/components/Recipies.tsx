@@ -10,7 +10,7 @@ interface recipeCompPrope  {
 
 
 export default function Recipies({searchfield}: recipeCompPrope) {
-  const [recipes, setRecipes] = useRecoilState(recipesArr)
+  const [recipes] = useRecoilState(recipesArr)
   
   let windowWidth = window.innerWidth
   return (
