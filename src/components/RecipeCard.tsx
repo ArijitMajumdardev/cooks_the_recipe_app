@@ -1,6 +1,4 @@
 import { Heart } from 'lucide-react'
-import food1 from '@/images/food1.jpg'
-import React from 'react'
 import { useRecoilState } from 'recoil'
 import { favouritesRecipe } from '@/store/atom/favrourites'
 

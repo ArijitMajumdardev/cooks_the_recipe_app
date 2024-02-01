@@ -1,4 +1,4 @@
-import React from 'react'
+
 import RecipeCard from './RecipeCard'
 import { recipesArr } from '@/store/atom/recipes'
 import { useRecoilState } from 'recoil'

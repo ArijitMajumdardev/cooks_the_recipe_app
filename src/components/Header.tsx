@@ -1,8 +1,6 @@
-import React from 'react'
+
 import { ModeToggle } from "../components/mode-toggle"
-import { useEffect, useState } from "react"; 
 import { Button } from './ui/button';
-import { useRecoilState } from 'recoil';
 import { Link } from 'react-router-dom';
 
 
