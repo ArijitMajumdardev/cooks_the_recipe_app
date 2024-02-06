@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-type typeRecipe = {
+export type typeRecipe = {
     [key:string]:string
 }
 

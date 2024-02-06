@@ -1,6 +1,7 @@
 
+import { isDetail } from '@/store/atom/detailRecipe'
 import RecipeCard from './RecipeCard'
-import { recipesArr } from '@/store/atom/recipes'
+import { recipesArr, typeRecipe } from '@/store/atom/recipes'
 import { useRecoilState } from 'recoil'
 
 
@@ -11,7 +12,15 @@ interface recipeCompPrope  {
 
 export default function Recipies({searchfield}: recipeCompPrope) {
   const [recipes] = useRecoilState(recipesArr)
+
   
+
+
+
+
+
+
+
   let windowWidth = window.innerWidth
   return (
     <div className='min-h-screen  '>
@@ -25,15 +34,19 @@ export default function Recipies({searchfield}: recipeCompPrope) {
 
       {
         windowWidth <550 ?  <div className='min-h-screen  grid grid-cols-1 gap-20 place-items-center '>
-        {recipes.map((e) => (
-          <RecipeCard image={e.strMealThumb} key={e.idMeal} title={e.strMeal} recipeKey={e.idMeal} />
+          {recipes.map((e) => (
+          
+              <RecipeCard image={e.strMealThumb} key={e.idMeal} title={e.strMeal} recipeKey={e.idMeal} recipe={e} />
+              
             ))}
             
         </div>
           :
           <div className='min-h-screen  grid grid-cols-3 gap-20 place-items-center '>
           {recipes.map((e) => (
-            <RecipeCard image={e.strMealThumb} key={e.idMeal} title={e.strMeal}  recipeKey={e.idMeal} />
+                     
+                      <RecipeCard image={e.strMealThumb} key={e.idMeal} title={e.strMeal} recipeKey={e.idMeal} recipe={e} />
+                     
               ))}
               
           </div>

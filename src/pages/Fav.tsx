@@ -1,9 +1,12 @@
 
 import FavouriteComponent from '@/components/FavouriteComponent'
+import RecipeDetail from '@/components/RecipeDetails'
+import { isDetail, recipeDetail } from '@/store/atom/detailRecipe'
 import { favouritesRecipeArray } from '@/store/atom/favrecipeArr'
 import { favouritesRecipe} from '@/store/atom/favrourites'
+import { typeRecipe } from '@/store/atom/recipes'
 import axios from 'axios'
-import { useEffect } from 'react'
+import { useEffect} from 'react'
 
 
 
@@ -15,7 +18,26 @@ import { useRecoilState} from 'recoil'
 
 export default function Fav() {
   const [favourites] = useRecoilState(favouritesRecipe)
-  const [,setfavArr] = useRecoilState(favouritesRecipeArray)
+  const [, setfavArr] = useRecoilState(favouritesRecipeArray)
+  const [isdetail, setisdetail] = useRecoilState(isDetail)
+  const [,setrecipedetail] = useRecoilState(recipeDetail)
+
+  
+  
+
+
+
+
+
+  function handleRecipeClick(recipe?: typeRecipe) {
+    
+    setrecipedetail(recipe)
+    setisdetail(!isdetail)
+    
+  }
+
+  
+
  
   useEffect(() => {
     const fetchData = async () => {
@@ -40,16 +62,26 @@ export default function Fav() {
   
  
 
+    
+  let windowWidth = window.innerWidth
+  
+  // console.log(windowWidth)
+  
+
+
   
 
   return (
-    <div className='min-h-screen  '>
+    <div className='min-h-screen relative flex justify-center items-center'>
 
-{
-              favourites?.length === 0 ? "" : <FavouriteComponent/>
-          }
+{/* {
+        favourites?.length === 0 ? "" : <FavouriteComponent handleRecipeClick={handleRecipeClick} windowWidth={windowWidth} />
+      } */}
+      
+      <FavouriteComponent handleRecipeClick={handleRecipeClick} windowWidth={windowWidth} />
 
-     
+     <RecipeDetail/>
+
 
     </div>
   )
