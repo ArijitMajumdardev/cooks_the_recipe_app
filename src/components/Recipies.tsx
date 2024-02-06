@@ -1,7 +1,6 @@
 
-import { isDetail } from '@/store/atom/detailRecipe'
 import RecipeCard from './RecipeCard'
-import { recipesArr, typeRecipe } from '@/store/atom/recipes'
+import { recipesArr } from '@/store/atom/recipes'
 import { useRecoilState } from 'recoil'
 
 
